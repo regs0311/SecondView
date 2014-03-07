@@ -9,27 +9,23 @@
 		echo $this->Form->input('password');
 		echo $this->Form->input('country');
 		echo $this->Form->input('gender', array(
-								    'options' => array('Male', 'Female')
+								    'options' => array('Male', 'Female'),
+								    'empty' => '(select one)',
 		));
-		echo $this->Form->input('profilepic', array(
-									'type' => 'file',
+		echo $this->Form->input('picture', array(
+									'label' => 'Select your profile picture',
+									'type'  => 'file',
 		));
 		echo $this->Form->input('dob', array(
-									'label' => 'Date of birth',
+									'label'      => 'Birthdate',
 								    'dateFormat' => 'DMY',
-								    'minYear' => date('Y') - 70,
-								    'maxYear' => date('Y') - 10,
+								    'minYear'    => date('Y') - 70,
+								    'maxYear'    => date('Y') - 10,
 		));
-		echo $this->Form->input('description');
-		
+		echo $this->Form->input('description', array(
+									'type' => 'text',
+		));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
-	</ul>
 </div>

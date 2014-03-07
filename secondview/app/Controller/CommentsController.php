@@ -63,7 +63,7 @@ class CommentsController extends AppController {
  * @throws NotFoundException
  * @param string $id
  * @return void
- */
+ DONT NEED TO IMPLEMENT?
 	public function edit($id = null) {
 		if (!$this->Comment->exists($id)) {
 			throw new NotFoundException(__('Invalid comment'));
@@ -80,6 +80,7 @@ class CommentsController extends AppController {
 			$this->request->data = $this->Comment->find('first', $options);
 		}
 	}
+*/
 
 /**
  * delete method
@@ -100,4 +101,5 @@ class CommentsController extends AppController {
 			$this->Session->setFlash(__('The comment could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

@@ -48,8 +48,9 @@ class PhotosController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Photo->create();
+			$this->request->data['Photo']['id_user'] = $this->Auth->user('id');
 			if ($this->Photo->save($this->request->data)) {
-				$this->Session->setFlash(__('The photo has been saved.'));
+				$this->Session->setFlash(__('The photo has been added.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The photo could not be saved. Please, try again.'));
@@ -63,7 +64,7 @@ class PhotosController extends AppController {
  * @throws NotFoundException
  * @param string $id
  * @return void
- */
+ DONT NEED TO IMPLEMENT?
 	public function edit($id = null) {
 		if (!$this->Photo->exists($id)) {
 			throw new NotFoundException(__('Invalid photo'));
@@ -80,6 +81,7 @@ class PhotosController extends AppController {
 			$this->request->data = $this->Photo->find('first', $options);
 		}
 	}
+*/
 
 /**
  * delete method
@@ -87,7 +89,7 @@ class PhotosController extends AppController {
  * @throws NotFoundException
  * @param string $id
  * @return void
- */
+ DONT NEED TO IMPLEMENT?
 	public function delete($id = null) {
 		$this->Photo->id = $id;
 		if (!$this->Photo->exists()) {
@@ -100,4 +102,6 @@ class PhotosController extends AppController {
 			$this->Session->setFlash(__('The photo could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+*/
+}

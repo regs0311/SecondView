@@ -1,18 +1,51 @@
 <div class="users form">
+<?php 
+	if (AuthComponent::user('username') == 0 ) {
+		$g = 'Male';
+	} else {
+		$g = 'Female';
+	}
+?>
+
 <?php echo $this->Form->create('User'); ?>
 	<fieldset>
 		<legend><?php echo __('Edit User'); ?></legend>
 	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('username');
-		echo $this->Form->input('name');
-		echo $this->Form->input('email');
-		echo $this->Form->input('password');
-		echo $this->Form->input('country');
-		echo $this->Form->input('gender');
-		echo $this->Form->input('profilepic');
-		echo $this->Form->input('dob');
-		echo $this->Form->input('description');
+		echo $this->Form->input('username', array(
+									'disabled'=> 'disabled'
+										
+		));
+		echo $this->Form->input('name', array(
+									'disabled'=> 'disabled'
+										
+		));
+		echo $this->Form->input('email', array(
+									'disabled'=> 'disabled',
+										
+		));
+		echo $this->Form->input('country'); 
+		echo $this->Form->input('gen', array(
+									'label' => 'Gender',
+									'value' => $g,
+									'disabled'=> 'disabled',
+		));
+		echo $this->Form->input('picture', array(
+									'label' => 'Select your profile picture',
+									'type'  => 'file',
+		));
+		echo $this->Form->input('dob', array(
+									'label'      => 'Birthday',
+								    'dateFormat' => 'DMY',
+								    'minYear'    => date('Y') - 70,
+								    'maxYear'    => date('Y') - 10,
+								    'disabled'=> 'disabled',
+		));
+		echo $this->Form->input('description', array(
+									'type' => 'text',
+		));
+		echo $this->Form->input('password', array(
+									'value' => '',
+		)); 
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
@@ -20,8 +53,6 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('User.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('User.id'))); ?></li>
 		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
 	</ul>
 </div>

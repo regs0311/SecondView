@@ -51,7 +51,7 @@ class User extends AppModel {
             ),
             'length' => array(
             	'rule'    => array('minLength', 5),
-            	'message' => 'Minimum length of 4 characters',
+            	'message' => 'Minimum length of 5 characters',
             ),
         ),
         'country' => array(
@@ -92,5 +92,6 @@ class User extends AppModel {
 	 	}
 	 	return true;
  	}
+ 	
  
 }

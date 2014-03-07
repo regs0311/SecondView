@@ -63,7 +63,7 @@ class SubscriptionsController extends AppController {
  * @throws NotFoundException
  * @param string $id
  * @return void
- */
+ DONT NEED TO IMPLEMENT?
 	public function edit($id = null) {
 		if (!$this->Subscription->exists($id)) {
 			throw new NotFoundException(__('Invalid subscription'));
@@ -80,6 +80,7 @@ class SubscriptionsController extends AppController {
 			$this->request->data = $this->Subscription->find('first', $options);
 		}
 	}
+*/
 
 /**
  * delete method
@@ -100,4 +101,5 @@ class SubscriptionsController extends AppController {
 			$this->Session->setFlash(__('The subscription could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

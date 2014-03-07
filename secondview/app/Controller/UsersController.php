@@ -114,6 +114,30 @@ class UsersController extends AppController {
 			$this->request->data = $this->User->find('first', $options);
 		}
 	}
+	
+/**
+ * isAuthorized method
+ *
+ * @throws NotFoundException
+ * @param string $user
+ * @return boolean if the user is authorized to be there
+ */	
+	public function isAuthorized($user) {
+	    // All registered users can view other users
+	    if (in_array($this->action, array('view', 'index', 'logout'))) {
+	        return true;
+	    }
+	
+	    // The owner of a post can edit and delete it
+	    if ($this->action === 'edit') {
+	        $userId = $this->request->params['pass'][0];
+	        if ($userId === $user['id']) {
+	            return true;
+	        }
+	    }
+	
+	    return false;
+	}
 
 /**
  * delete method
@@ -121,7 +145,7 @@ class UsersController extends AppController {
  * @throws NotFoundException
  * @param string $id
  * @return void
- */
+ DONT NEED TO IMPLEMENT?
 	public function delete($id = null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
@@ -134,4 +158,6 @@ class UsersController extends AppController {
 			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+*/
+}

@@ -40,22 +40,14 @@ class AppController extends Controller {
 				'action'     => 'index'
 			),
 			'logoutRedirect' => array(
-				'controller' => 'pages',
-				'action'     => 'display',
-				'home'
+				'controller' => 'users',
+				'action'     => 'login',
 			),
-			'flash' => array(
-				'element' => 'alert',
-				'key'     => 'auth',
-				'params' => array(
-					'plugin' => 'BoostCake',
-					'class'  => 'alert-error'
-				)
-			)
+			'authorize' => array('Controller'),
 		)
 	);
 	
 	public function beforeFilter() {
-		$this->Auth->allow('index');
+		$this->Auth->allow('login');
 	}
 }
