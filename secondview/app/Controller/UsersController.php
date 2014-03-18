@@ -83,12 +83,12 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			$file = $this->data['User']['picture'];
-			$dir = WWW_ROOT . 'photo/' . $this->data['User']['username'];
+			$dir = 'img/users/' . $this->data['User']['username'];
 			$ext = substr(strtolower(strrchr($file['name'], '.')), 1);
-			$this->request->data['User']['profilepic'] = WWW_ROOT . 'photo/' . $this->data['User']['username'] . '/profilepic.' . $ext;
+			$this->request->data['User']['profilepic'] = $this->data['User']['username'] . '/profilepic.' . $ext;
 			if ($this->User->save($this->request->data)) {
 				mkdir($dir, 0777, true);
-				move_uploaded_file($file['tmp_name'], WWW_ROOT . 'photo/' . $this->data['User']['username']. '/profilepic.' . $ext);
+				move_uploaded_file($file['tmp_name'], $dir . '/profilepic.' . $ext);
 				$this->Session->setFlash(__('The user has been saved.'));
 				return $this->redirect(array('action' => 'login'));
 			} else {

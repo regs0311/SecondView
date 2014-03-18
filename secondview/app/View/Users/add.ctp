@@ -22,7 +22,7 @@
 								    'minYear'    => date('Y') - 70,
 								    'maxYear'    => date('Y') - 10,
 		));
-		echo $this->Form->input('description', array(
+		echo $this->Form->input('Tell us something about yourself: ', array(
 									'type' => 'text',
 		));
 	?>

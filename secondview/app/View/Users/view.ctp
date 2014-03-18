@@ -21,24 +21,26 @@
 			<?php echo h($user['User']['email']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Password'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['password']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Country'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['country']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Gender'); ?></dt>
+		<?php 
+		if ($user['User']['gender'] == 0 ) {
+			$g = 'Male';
+		} else {
+			$g = 'Female';
+		}
+		?>
 		<dd>
-			<?php echo h($user['User']['gender']); ?>
+			<?php echo h($g); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Profilepic'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['profilepic']); ?>
+			<?php echo $this->Html->image($user['User']['profilepic'], array('alt' => 'profile picture', 'height'=>'300','width'=>'300')); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Dob'); ?></dt>
@@ -49,16 +51,6 @@
 		<dt><?php echo __('Description'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['description']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['modified']); ?>
 			&nbsp;
 		</dd>
 	</dl>
