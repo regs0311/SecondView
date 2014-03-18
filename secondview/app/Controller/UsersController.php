@@ -85,7 +85,7 @@ class UsersController extends AppController {
 			$file = $this->data['User']['picture'];
 			$dir = 'img/users/' . $this->data['User']['username'];
 			$ext = substr(strtolower(strrchr($file['name'], '.')), 1);
-			$this->request->data['User']['profilepic'] = $this->data['User']['username'] . '/profilepic.' . $ext;
+			$this->request->data['User']['profilepic'] = 'users/' . $this->data['User']['username'] . '/profilepic.' . $ext;
 			if ($this->User->save($this->request->data)) {
 				mkdir($dir, 0777, true);
 				move_uploaded_file($file['tmp_name'], $dir . '/profilepic.' . $ext);

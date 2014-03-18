@@ -43,7 +43,7 @@
 			<?php echo $this->Html->image($user['User']['profilepic'], array('alt' => 'profile picture', 'height'=>'300','width'=>'300')); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Dob'); ?></dt>
+		<dt><?php echo 'Birthday' ?></dt>
 		<dd>
 			<?php echo h($user['User']['dob']); ?>
 			&nbsp;
