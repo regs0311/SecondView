@@ -56,3 +56,7 @@ body {
   padding-left: 90px;
   padding-right: 90px;
 }
+
+#UserPassword {
+  margin-bottom: 20px;
+}
