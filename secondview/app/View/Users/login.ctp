@@ -14,7 +14,7 @@
                    <div class="modal-dialog modal-custom">
                       <div class="modal-content">
                          <div class="modal-body">
-			    <?php echo $this->Session->flash('auth'); ?>
+			    <?php echo $this->Session->flash(); ?>
 			    <div class="users form">
      			       <form action="/" id="UserLoginForm" method="post" accept-charset="utf-8" class="form-signin" role="form">
       			          <div style="display:none;">
@@ -30,7 +30,7 @@
                                      </div>	
                                   </fieldset> 
                                   <button class="btn btn-lg btn-primary" type="submit">Login</button>
-                                  <button class="btn btn-lg btn-success">Register</button>
+			          <a href='/users/add' class="btn btn-lg btn-success">Register</a>
                                </form>
                             </div>
                          </div>
