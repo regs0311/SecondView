@@ -27,23 +27,23 @@
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
 				<span class="sr-only">Toggle navigation</span>
-               			<span class="icon-bar"></span>	
-               		 	<span class="icon-bar"></span>	
-               		 	<span class="icon-bar"></span>	
+               	<span class="icon-bar"></span>	
+               	<span class="icon-bar"></span>	
+               	<span class="icon-bar"></span>	
 			</button>
-			<a class="navbar-brand" rel="home" href="/" title="label">Second View</a>
+			<a class="navbar-brand" rel="home" href="/secondview" title="label">Second View</a>
 		</div>
 		
 		<?php
                   
-                if($this->Session->read('Auth.User')) {
+        if($this->Session->read('Auth.User')) {
 		echo "<div class='collapse navbar-collapse navbar-ex1-collapse'>
 
 			<ul class='nav navbar-nav'>
-				<li class='active'><a href='#'>Profile</a></li>
+				<li class='active'><a href='/secondview/users/view/".AuthComponent::user('id')."' >Profile</a></li>
 				<li><a href='#'>Upload</a></li> 
 				<li><a href='#'>About</a></li>
-				<li><a href='/users/logout'>Logout</a></li>    
+				<li><a href='/secondview/users/logout'>Logout</a></li>    
 			</ul>
 
 		</div>";
