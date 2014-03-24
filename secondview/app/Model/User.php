@@ -54,6 +54,22 @@ class User extends AppModel {
             	'message' => 'Minimum length of 5 characters',
             ),
         ),
+        'newpassword' => array(
+            'required' => array(
+                'rule'    => 'notEmpty',
+                'message' => 'A password is required'
+            ),
+            'length' => array(
+            	'rule'    => array('minLength', 5),
+            	'message' => 'Minimum length of 5 characters',
+            ),
+        ),
+        'oldpassword' => array(
+            'required' => array(
+                'rule'    => 'notEmpty',
+                'message' => 'A password is required'
+            ),
+        ),
         'country' => array(
             'required' => array(
                 'rule'    => 'notEmpty',

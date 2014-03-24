@@ -12,11 +12,6 @@ class Photo extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'id_user' => array(
-			'numeric' => array(
-				'rule'    => array('numeric'),
-			),
-		),
 		'src' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
@@ -24,4 +19,9 @@ class Photo extends AppModel {
 			),
 		),
 	);
+	
+	
+	public function isOwnedBy($photo, $user) {
+    	return $this->field('id', array('id' => $photo, 'user_id' => $user)) === $photo;
+    }
 }

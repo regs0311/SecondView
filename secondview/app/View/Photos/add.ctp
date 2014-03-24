@@ -3,10 +3,8 @@
 	<fieldset>
 		<legend><?php echo __('Add Photo'); ?></legend>
 	<?php
-		echo $this->Form->input('id_user');
-		echo $this->Form->input('description');
-		echo $this->Form->input('rating');
 		echo $this->Form->input('src');
+		echo $this->Form->input('description');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

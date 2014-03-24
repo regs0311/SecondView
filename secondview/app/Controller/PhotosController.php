@@ -57,6 +57,15 @@ class PhotosController extends AppController {
 			}
 		}
 	}
+	
+	public function isAuthorized($user) {
+    	// All registered users can add posts
+	    if ($this->action === 'view' || $this->action === 'add' || $this->action == 'view') {
+	        return true;
+	    }
+	    
+        return parent::isAuthorized($user);
+    }
 
 /**
  * edit method

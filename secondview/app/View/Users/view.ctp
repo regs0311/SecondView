@@ -58,7 +58,9 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit My Information'), array('action' => 'edit', AuthComponent::user('id'))); ?> </li>
+		<li><?php echo $this->Html->link(__('Change my description'), array('action' => 'changedescription', AuthComponent::user('id'))); ?> </li>
+		<li><?php echo $this->Html->link(__('Change password'), array('action' => 'changepassword', AuthComponent::user('id'))); ?> </li>
+		<li><?php echo $this->Html->link(__('Change profile picture'), array('action' => 'changepp', AuthComponent::user('id'))); ?> </li>
 		<li><?php echo $this->Html->link(__('Log Out'), array('action' => 'logout')); ?> </li>
 	</ul>
 </div>

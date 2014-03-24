@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+
 /**
  * Users Controller
  *
@@ -98,19 +99,88 @@ class UsersController extends AppController {
 	}
 
 /**
- * edit method
+ * changedescription method
  *
  * @throws NotFoundException
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function changedescription($id = null) {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+			$this->request->data['User']['id'] = $this->Auth->user('id');
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved.'));
+								$this->Session->setFlash(__('Description changed'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			}	
+		} else {
+			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+			$this->request->data = $this->User->find('first', $options);
+		}
+	}
+	
+/**
+ * changepassword method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function changepassword($id = null) {
+		$user = $this->User->findById($this->Auth->user('id'));
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if($user['User']['password'] == AuthComponent::password($this->request->data['User']['oldpassword'])) {
+				$this->request->data['User']['id'] = $this->Auth->user('id');
+				$this->request->data['User']['password'] = $this->request->data['User']['newpassword'];
+				if ($this->User->save($this->request->data)) {
+					$this->Session->setFlash(__('Password changed'));
+					return $this->redirect(array('action' => 'index'));
+				} else {
+					$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				}
+			} else {
+				$this->Session->setFlash(__('Wrong password'));
+			}
+				
+		} else {
+			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+			$this->request->data = $this->User->find('first', $options);
+		}
+	}
+
+/**
+ * changepp method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function changepp($id = null) {
+		$user = $this->User->findById($id);
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		if ($this->request->is('put')) {
+			$this->request->data['User']['id'] = $this->Auth->user('id');
+			$file = $this->request->data['User']['picture'];
+			$dir = 'img/users/' . $user['User']['username'];
+			$ext = substr(strtolower(strrchr($file['name'], '.')), 1);
+			$this->request->data['User']['profilepic'] = 'users/' . $user['User']['username'] . '/profilepic.' . $ext;
+			if ($this->User->save($this->request->data)) {
+				// Delete old progile picture
+				$nfile = new File('img/' . $user['User']['profilepic']);
+				$nfile->delete();
+				$nfile->close();	
+				// Upload new one
+				move_uploaded_file($file['tmp_name'], $dir . '/profilepic.' . $ext);
+				$this->Session->setFlash(__('Profile picture changed'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
@@ -133,9 +203,8 @@ class UsersController extends AppController {
 	    if (in_array($this->action, array('view', 'index', 'logout'))) {
 	        return true;
 	    }
-	
-	    // The owner of a post can edit and delete it
-	    if ($this->action === 'edit') {
+	    
+	    if (in_array($this->action, array('changedescription', 'changepassword', 'changepp'))) { 
 	        $userId = $this->request->params['pass'][0];
 	        if ($userId === $user['id']) {
 	            return true;
@@ -144,26 +213,4 @@ class UsersController extends AppController {
 	
 	    return false;
 	}
-
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- DONT NEED TO IMPLEMENT?
-	public function delete($id = null) {
-		$this->User->id = $id;
-		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		$this->request->onlyAllow('post', 'delete');
-		if ($this->User->delete()) {
-			$this->Session->setFlash(__('The user has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
-		}
-		return $this->redirect(array('action' => 'index'));
-	}
-*/
 }

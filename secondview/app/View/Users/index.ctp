@@ -47,6 +47,7 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('My information'), array('action' => 'view', AuthComponent::user('id'))); ?></li>
+		<li><?php echo $this->Html->link(__('Post Photo'), array('controller' => 'photos', 'action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('Log Out'), array('action' => 'logout')); ?> </li>
 	</ul>
 </div>
