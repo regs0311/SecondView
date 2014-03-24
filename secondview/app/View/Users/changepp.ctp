@@ -1,4 +1,4 @@
-<div class="users form">
+<div>
 <?php echo $this->Form->create('User', array('enctype' => 'multipart/form-data')); ?>
 	<fieldset>
 		<legend><?php echo __('Change your description'); ?></legend>
@@ -11,7 +11,7 @@
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>
-<div class="actions">
+<div>
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>

@@ -199,7 +199,7 @@ class UsersController extends AppController {
  * @return boolean if the user is authorized to be there
  */	
 	public function isAuthorized($user) {
-	    // All registered users can view other users
+	    // All registered users can do this
 	    if (in_array($this->action, array('view', 'index', 'logout'))) {
 	        return true;
 	    }

@@ -1,14 +1,17 @@
-<div class="photos view">
+<div>
 <h2><?php echo __('Photo'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
+		<dt><?php echo __('Photo'); ?></dt>
 		<dd>
-			<?php echo h($photo['Photo']['id']); ?>
+			<?php echo $this->Html->image($user['Photo']['src'], array('alt' => 'picture', 'height'=>'300','width'=>'300')); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Id User'); ?></dt>
+		<dt><?php echo __('User'); ?></dt>
 		<dd>
-			<?php echo h($photo['Photo']['id_user']); ?>
+			<?php 
+				$user = $this->User->findById($photo['Photo']['id_user']);
+				echo h($user['User']['username']); 
+			?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Description'); ?></dt>
@@ -21,24 +24,12 @@
 			<?php echo h($photo['Photo']['rating']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Src'); ?></dt>
-		<dd>
-			<?php echo h($photo['Photo']['src']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($photo['Photo']['created']); ?>
-			&nbsp;
-		</dd>
 	</dl>
 </div>
-<div class="actions">
+<div>
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Photo'), array('action' => 'edit', $photo['Photo']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Photo'), array('action' => 'delete', $photo['Photo']['id']), null, __('Are you sure you want to delete # %s?', $photo['Photo']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Photos'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Photo'), array('action' => 'add')); ?> </li>
 	</ul>
 </div>

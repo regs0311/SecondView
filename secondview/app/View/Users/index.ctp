@@ -1,4 +1,4 @@
-<div class="users index">
+<div>
 	<h2><?php echo __('Users'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
@@ -43,7 +43,7 @@
 	?>
 	</div>
 </div>
-<div class="actions">
+<div>
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('My information'), array('action' => 'view', AuthComponent::user('id'))); ?></li>

@@ -49,9 +49,19 @@ class PhotosController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Photo->create();
 			$this->request->data['Photo']['id_user'] = $this->Auth->user('id');
+			$this->request->data['Photo']['rating'] = 0;
+			// Add photo
+			$file = $this->data['Photo']['picture'];
+			$random_name = substr(number_format(time() * rand(),0,'',''),0,10);
+			$dir = 'img/users/' . $this->Auth->user('username') . '/';
+			$ext = substr(strtolower(strrchr($file['name'], '.')), 1);
+			$this->request->data['Photo']['src'] = 'users/' . $this->Auth->user('username') . '/' . $random_name . $ext;
+			
 			if ($this->Photo->save($this->request->data)) {
+				// Copy photo to server
+				move_uploaded_file($file['tmp_name'], $dir . $random_name . '.' . $ext);
 				$this->Session->setFlash(__('The photo has been added.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller' => 'users', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The photo could not be saved. Please, try again.'));
 			}
@@ -59,38 +69,21 @@ class PhotosController extends AppController {
 	}
 	
 	public function isAuthorized($user) {
-    	// All registered users can add posts
-	    if ($this->action === 'view' || $this->action === 'add' || $this->action == 'view') {
-	        return true;
-	    }
-	    
-        return parent::isAuthorized($user);
+    	// All registered users can view and add photos
+    	if (in_array($this->action, array('view', 'add'))) {
+        	return true;
+        }
+
+        // The owner of a post can delete it
+        if ($this->action === 'delete') {
+        	$photoId = $this->request->params['pass'][0];
+        	if ($this->Post->isOwnedBy($postId, $user['id'])) {
+            	return true;
+        }
     }
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- DONT NEED TO IMPLEMENT?
-	public function edit($id = null) {
-		if (!$this->Photo->exists($id)) {
-			throw new NotFoundException(__('Invalid photo'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Photo->save($this->request->data)) {
-				$this->Session->setFlash(__('The photo has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The photo could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('Photo.' . $this->Photo->primaryKey => $id));
-			$this->request->data = $this->Photo->find('first', $options);
-		}
-	}
-*/
+    return parent::isAuthorized($user);
+}
 
 /**
  * delete method
@@ -98,7 +91,7 @@ class PhotosController extends AppController {
  * @throws NotFoundException
  * @param string $id
  * @return void
- DONT NEED TO IMPLEMENT?
+*/
 	public function delete($id = null) {
 		$this->Photo->id = $id;
 		if (!$this->Photo->exists()) {
@@ -112,5 +105,4 @@ class PhotosController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-*/
 }

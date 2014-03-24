@@ -1,4 +1,4 @@
-<div class="users form">
+<div>
 <?php echo $this->Form->create('User', array('enctype' => 'multipart/form-data')); ?>
 	<fieldset>
 		<legend><?php echo __('Add User'); ?></legend>

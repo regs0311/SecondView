@@ -1,4 +1,4 @@
-<div class="users view">
+<div>
 <h2><?php echo __('User'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
@@ -55,7 +55,7 @@
 		</dd>
 	</dl>
 </div>
-<div class="actions">
+<divaa>
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Change my description'), array('action' => 'changedescription', AuthComponent::user('id'))); ?> </li>

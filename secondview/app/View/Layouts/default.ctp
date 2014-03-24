@@ -34,21 +34,16 @@
 			<a class="navbar-brand" rel="home" href="/secondview" title="label">Second View</a>
 		</div>
 		
-		<?php
-                  
-        if($this->Session->read('Auth.User')) {
-		echo "<div class='collapse navbar-collapse navbar-ex1-collapse'>
-
+		<?php if($this->Session->read('Auth.User')) { ?>
+		<div class='collapse navbar-collapse navbar-ex1-collapse'>
 			<ul class='nav navbar-nav'>
-				<li class='active'><a href='/secondview/users/view/".AuthComponent::user('id')."' >Profile</a></li>
-				<li><a href='#'>Upload</a></li> 
+				<li><a href='/secondview/users/view/<?php echo AuthComponent::user('id') ?>'>Profile</a></li>
+				<li><a href='/secondview/photos/add'>Upload</a></li> 
 				<li><a href='#'>About</a></li>
 				<li><a href='/secondview/users/logout'>Logout</a></li>    
 			</ul>
-
-		</div>";
-		}
-                ?>
+		</div>
+		<?php } ?>
 	</div>
 
 	<?php echo $this->fetch('content'); ?>
