@@ -69,7 +69,7 @@ class PhotosController extends AppController {
 	
 	public function isAuthorized($user) {
     	// All registered users can view and add photos
-    	if (in_array($this->action, array('view', 'add'))) {
+    	if (in_array($this->action, array('view', 'add', 'index'))) {
         	return true;
         }
 

@@ -9,7 +9,6 @@
 		<dt><?php echo __('User'); ?></dt>
 		<dd>
 			<?php 
-				//$user = $this->Photo->User->findById($photo['Photo']['id_user']);
 				echo h($photo['User']['username']); 
 			?>
 			&nbsp;
