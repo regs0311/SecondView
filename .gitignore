@@ -6,4 +6,4 @@ secondview/app/[Cc]onfig/core.php
 secondview/app/[Cc]onfig/database.php
 !empty
 .DS_STORE
-secondview/app/webroot/photo/*
+secondview/app/webroot/img/*

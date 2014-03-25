@@ -39,6 +39,13 @@ class Photo extends AppModel {
     	// No file set, doesn't validate!
     	return false;
     }
+    
+    public $belongsTo = array(
+    	'User' => array (
+            'className' => 'User',
+            'foreignKey' => 'user_id',
+        ),
+    );
 	
 	public function isOwnedBy($photo, $user) {
     	return $this->field('id', array('id' => $photo, 'user_id' => $user)) === $photo;

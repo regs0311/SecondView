@@ -49,13 +49,12 @@ class PhotosController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Photo->create();
 			$this->request->data['Photo']['id_user'] = $this->Auth->user('id');
-			$this->request->data['Photo']['rating'] = 0;
 			// Add photo
 			$file = $this->data['Photo']['picture'];
 			$random_name = substr(number_format(time() * rand(),0,'',''),0,10);
 			$dir = 'img/users/' . $this->Auth->user('username') . '/';
 			$ext = substr(strtolower(strrchr($file['name'], '.')), 1);
-			$this->request->data['Photo']['src'] = 'users/' . $this->Auth->user('username') . '/' . $random_name . $ext;
+			$this->request->data['Photo']['src'] = 'users/' . $this->Auth->user('username') . '/' . $random_name .  '.' .$ext;
 			
 			if ($this->Photo->save($this->request->data)) {
 				// Copy photo to server

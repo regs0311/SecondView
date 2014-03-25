@@ -3,14 +3,14 @@
 	<dl>
 		<dt><?php echo __('Photo'); ?></dt>
 		<dd>
-			<?php echo $this->Html->image($user['Photo']['src'], array('alt' => 'picture', 'height'=>'300','width'=>'300')); ?>
+			<?php echo $this->Html->image($photo['Photo']['src'], array('alt' => 'picture', 'height'=>'300','width'=>'300')); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('User'); ?></dt>
 		<dd>
 			<?php 
-				$user = $this->User->findById($photo['Photo']['id_user']);
-				echo h($user['User']['username']); 
+				//$user = $this->Photo->User->findById($photo['Photo']['id_user']);
+				echo h($photo['User']['username']); 
 			?>
 			&nbsp;
 		</dd>

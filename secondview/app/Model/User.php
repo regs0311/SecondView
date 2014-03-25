@@ -128,6 +128,8 @@ class User extends AppModel {
     	// No file set, doesn't validate!
     	return false;
     }
+    
+     public $hasMany = 'Photo';
  	
  
 }
