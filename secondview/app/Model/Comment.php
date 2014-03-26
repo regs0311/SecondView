@@ -12,16 +12,6 @@ class Comment extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'id_user' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-			),
-		),
-		'id_photo' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-			),
-		),
 		'comment' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
@@ -29,4 +19,6 @@ class Comment extends AppModel {
 			),
 		),
 	);
+	
+	public $belongsTo = array('Photo', 'User');
 }

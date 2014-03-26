@@ -40,12 +40,9 @@ class Photo extends AppModel {
     	return false;
     }
     
-    public $belongsTo = array(
-    	'User' => array (
-            'className' => 'User',
-            'foreignKey' => 'user_id',
-        ),
-    );
+    public $belongsTo = 'User';
+    
+    public $hasMany = 'Comment';
 	
 	public function isOwnedBy($photo, $user) {
     	return $this->field('id', array('id' => $photo, 'user_id' => $user)) === $photo;

@@ -36,7 +36,7 @@ class PhotosController extends AppController {
 		if (!$this->Photo->exists($id)) {
 			throw new NotFoundException(__('Invalid photo'));
 		}
-		$options = array('conditions' => array('Photo.' . $this->Photo->primaryKey => $id));
+		$options = array('conditions' => array('Photo.' . $this->Photo->primaryKey => $id), 'recursive' => 2);
 		$this->set('photo', $this->Photo->find('first', $options));
 	}
 
@@ -48,7 +48,7 @@ class PhotosController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Photo->create();
-			$this->request->data['Photo']['id_user'] = $this->Auth->user('id');
+			$this->request->data['Photo']['user_id'] = $this->Auth->user('id');
 			// Add photo
 			$file = $this->data['Photo']['picture'];
 			$random_name = substr(number_format(time() * rand(),0,'',''),0,10);
@@ -60,7 +60,7 @@ class PhotosController extends AppController {
 				// Copy photo to server
 				move_uploaded_file($file['tmp_name'], $dir . $random_name . '.' . $ext);
 				$this->Session->setFlash(__('The photo has been added.'));
-				return $this->redirect(array('controller' => 'users', 'action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The photo could not be saved. Please, try again.'));
 			}
@@ -78,11 +78,11 @@ class PhotosController extends AppController {
         	$photoId = $this->request->params['pass'][0];
         	if ($this->Post->isOwnedBy($postId, $user['id'])) {
             	return true;
+            }
         }
-    }
 
-    return parent::isAuthorized($user);
-}
+    	return parent::isAuthorized($user);
+    }
 
 /**
  * delete method

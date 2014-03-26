@@ -6,7 +6,7 @@
 	<?php
 		echo $this->Html->meta('icon');
 
-                echo $this->Html->css('bootstrap.min.css');
+        echo $this->Html->css('bootstrap.min.css');
 		echo $this->Html->css('styles.css');
 
 		echo $this->fetch('meta');

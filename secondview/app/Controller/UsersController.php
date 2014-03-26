@@ -114,7 +114,7 @@ class UsersController extends AppController {
 			$this->request->data['User']['id'] = $this->Auth->user('id');
 			if ($this->User->save($this->request->data)) {
 								$this->Session->setFlash(__('Description changed'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller' => 'photos', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}	
@@ -142,7 +142,7 @@ class UsersController extends AppController {
 				$this->request->data['User']['password'] = $this->request->data['User']['newpassword'];
 				if ($this->User->save($this->request->data)) {
 					$this->Session->setFlash(__('Password changed'));
-					return $this->redirect(array('action' => 'index'));
+					return $this->redirect(array('controller' => 'photos', 'action' => 'index'));
 				} else {
 					$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 				}
@@ -182,7 +182,7 @@ class UsersController extends AppController {
 				// Upload new one
 				move_uploaded_file($file['tmp_name'], $dir . '/profilepic.' . $ext);
 				$this->Session->setFlash(__('Profile picture changed'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller' => 'photos', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}

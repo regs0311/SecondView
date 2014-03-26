@@ -129,7 +129,10 @@ class User extends AppModel {
     	return false;
     }
     
-     public $hasMany = 'Photo';
+     public $hasMany = array(
+     	'Photo',
+     	'Comment'
+     );
  	
  
 }
