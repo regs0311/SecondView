@@ -1,4 +1,4 @@
-
+﻿
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 —-Please run this command also if you have description as varchar
-ALTER TABLE  'photos' CHANGE  'description'  'description' TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
+ALTER TABLE  `photos` CHANGE  `description`  `description` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
 
 —- Also this one
 ALTER TABLE  `photos` CHANGE  `id_user`  `user_id` INT( 11 ) NOT NULL
