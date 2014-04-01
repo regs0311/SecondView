@@ -39,10 +39,27 @@
 			<ul class='nav navbar-nav'>
 				<li><a href='/secondview/users/view/<?php echo AuthComponent::user('id') ?>'>Profile</a></li>
 				<li><a href='/secondview/photos/add'>Upload</a></li> 
-				<li><a href='#'>About</a></li>
-				<li><a href='/secondview/users/logout'>Logout</a></li>    
+				<li><a href='#'>About</a></li>   
+			</ul>
+			<div class="col-md-3 pull-right">
+				<form class="navbar-form" role="search">
+                			<div class="input-group">
+                				<input type="text" class="form-control" placeholder="Search" name="srch-word" id="srch">
+                        			<div class="input-group-btn">
+                        				<button class="btn btn-default" type="Submit"><i class="glyphicon glyphicon-search"></i></button>
+                        			</div>	
+                			</div>
+				</form>
+			</div>
+			<ul class='nav navbar-nav navbar-right'>
+				<li><a href='/secondview/users/logout'>
+                                    <span class="glyphicon glyphicon-log-out"></span>
+                                    Logout</a>
+                                </li>    
 			</ul>
 		</div>
+           
+
 		<?php } ?>
 	</div>
 

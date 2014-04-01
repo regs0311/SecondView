@@ -4,6 +4,7 @@ secondview/[Cc]onfig/database.php
 secondview/app/tmp/*
 secondview/app/[Cc]onfig/core.php
 secondview/app/[Cc]onfig/database.php
+secondview/lib/*
 !empty
 .DS_STORE
 secondview/app/webroot/img/*

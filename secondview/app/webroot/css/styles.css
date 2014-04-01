@@ -1,5 +1,8 @@
 body {
   background-color: rgb(47,45,42);
+}
+
+#jumbotron {
   overflow-y: hidden;
 }
 
@@ -48,8 +51,77 @@ body {
             border-radius: 8px;
 }
 
+.navbarfix {
+  margin-top: 20px;
+}
+
+.user_info > h3 {
+  color: rgb(170,170,170);
+}
+
+.profile_info {
+  padding: 20px;
+  /*color: rgba(21,164,178,0.6); */
+  color: white;
+  border: 1px solid;
+  border-radius: 5px;
+  border-color: rgb(170,170,170);
+}
+
+.carousel-inner {
+  height: 400px;
+  overflow-y: hidden;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.left.carousel-control {
+  /* background-image: none; */
+}
+
+.right.carousel-control {
+  /* background-image: none; */
+}
+
+.carousel-indicators {
+  top: 20px;
+}
+
+.uploadphoto {
+  margin-top: 20px;
+  padding: 20px 40px 40px 40px;
+  color: rgb(170,170,170);
+  border: 1px solid;
+  border-radius: 5px;
+  border-color: rgb(170,170,170);
+}
+
+.uploadphoto > h1 {
+  margin-bottom: 35px;
+  color: white;
+}
+
+.registration {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  padding: 20px 40px 40px 40px;
+  color: rgb(170,170,170);
+  border: 1px solid;
+  border-radius: 5px;
+  border-color: rgb(170,170,170);
+}
+
+.registration > h1 {
+  margin-bottom: 35px;
+  color: white;
+}
+
 .modal-custom {
   text-align: left;
+}
+
+.profile_pic {
+  text-align: center;
 }
 
 .container > p {
