@@ -6,6 +6,7 @@ App::uses('AppModel', 'Model');
  */
 class Photo extends AppModel {
 
+
 /**
  * Validation rules
  *
@@ -40,6 +41,14 @@ class Photo extends AppModel {
     	return false;
     }
     
+    /**
+    public $belongsTo = array(
+        'User' => array(
+            'className' => 'User',
+            'foreignKey' => 'id_user'
+        )
+    ); **/
+
     public $belongsTo = 'User';
     
     public $hasMany = 'Comment';

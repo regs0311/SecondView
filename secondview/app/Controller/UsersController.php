@@ -74,6 +74,12 @@ class UsersController extends AppController {
 		}
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$this->set('user', $this->User->find('first', $options));
+
+		$this->loadModel('Photo');
+		
+                //$conditions = array('User.id' => '4');
+                $this->set('photos', $this->Photo->find('all'));
+
 	}
 
 /**

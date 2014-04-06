@@ -32,22 +32,38 @@
          <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
-               <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-               <li data-target="#myCarousel" data-slide-to="1"></li>
-               <li data-target="#myCarousel" data-slide-to="2"></li>
+	       <?php 
+                  $i = 0;
+                  foreach ($photos as $photo):
+                     if($i == 0) {
+                       echo "<li data-target='#myCarousel' data-slide-to='" . $i . "' class='active'></li>\n";
+		     }
+                     else {
+                       echo "<li data-target='#myCarousel' data-slide-to='" . $i . "'></li>\n";
+		     }
+ 		     $i++;
+                  endforeach; ?>
             </ol>
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
-               <div class="item active">
-                  <?php echo $this->Html->image("gym.jpg", array('alt' => '...')); ?>
-               </div>
-               <div class="item">
-                  <?php echo $this->Html->image("sunset.jpg", array('alt' => '...')); ?>
-               </div>
-               <div class="item">
-                  <?php echo $this->Html->image("jumbo.jpg", array('alt' => '...')); ?>
-               </div>
+ 
+	       <?php 
+                  $i = 0;
+                  foreach ($photos as $photo):
+                     if($i == 0) {
+                        echo "<div class='item active'>";
+                           echo $this->Html->image($photo['Photo']['src'], array('alt' => '...'));
+		        echo "</div>";
+		     }
+                     else {
+                        echo "<div class='item'>";
+                           echo $this->Html->image($photo['Photo']['src'], array('alt' => '...'));
+		        echo "</div>";
+		     }
+ 		     $i++;
+                  endforeach; ?>
+
             </div>
 
              <!-- Controls -->
