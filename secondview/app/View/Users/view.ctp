@@ -12,7 +12,7 @@
 	 
             <div class="row">
                <div class="user_info col-md-10">
-	          <h3>Profile information</h3>
+		  <h3>Profile information</h3>
                   <div>
 	             <span class="glyphicon glyphicon-user"></span>
                      <span><?php echo h($user['User']['username']); ?></span>
@@ -36,10 +36,10 @@
                   $i = 0;
                   foreach ($photos as $photo):
                      if($i == 0) {
-                       echo "<li data-target='#myCarousel' data-slide-to='" . $i . "' class='active'></li>\n";
+                       echo "<li data-target='#myCarousel' data-slide-to='" . $i . "' class='active'></li>";
 		     }
                      else {
-                       echo "<li data-target='#myCarousel' data-slide-to='" . $i . "'></li>\n";
+                       echo "<li data-target='#myCarousel' data-slide-to='" . $i . "'></li>";
 		     }
  		     $i++;
                   endforeach; ?>
@@ -53,12 +53,16 @@
                   foreach ($photos as $photo):
                      if($i == 0) {
                         echo "<div class='item active'>";
-                           echo $this->Html->image($photo['Photo']['src'], array('alt' => '...'));
+                           echo $this->Html->image($photo['Photo']['src'], array('alt' => '...',
+                                                                                 'url' => array('controller' => 'photos',       
+                                                                                                'action' => 'view', $photo['Photo']['id'])));
 		        echo "</div>";
 		     }
                      else {
                         echo "<div class='item'>";
-                           echo $this->Html->image($photo['Photo']['src'], array('alt' => '...'));
+                           echo $this->Html->image($photo['Photo']['src'], array('alt' => '...', 
+                                                                                 'url' => array('controller' => 'photos',       
+                                                                                                'action' => 'view', $photo['Photo']['id'])));
 		        echo "</div>";
 		     }
  		     $i++;

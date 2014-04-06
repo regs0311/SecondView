@@ -132,3 +132,27 @@ body {
 #UserPassword {
   margin-bottom: 20px;
 }
+
+.add-comment {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  padding: 40px 40px 40px 40px;
+  color: rgb(170,170,170);
+  border: 1px solid;
+  border-radius: 5px;
+  border-color: rgb(170,170,170);
+}
+
+.carousel-indicators {
+  height: 20px;
+  overflow-y: hidden;
+}
+
+.detail-photo {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.detail-img {
+  width: 100%;
+}
