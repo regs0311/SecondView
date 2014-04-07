@@ -1,4 +1,4 @@
-﻿
+
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
@@ -52,3 +52,6 @@ ALTER TABLE  `photos` CHANGE  `rating`  `rating` SMALLINT( 1 ) NULL DEFAULT  '0'
 ALTER TABLE  `comments` CHANGE  `id_user`  `user_id` INT( 11 ) NOT NULL
 ALTER TABLE  `comments` CHANGE  `id_photo`  `photo_id` INT( 11 ) NOT NULL
 ALTER TABLE  `comments` CHANGE  `comment`  `comment` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
+
+—NEW ONE
+ALTER TABLE  `users` CHANGE  `description`  `description` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
