@@ -15,8 +15,10 @@
 
 		echo $this->Html->script('jquery-2.1.0.js');
 		echo $this->Html->script('bootstrap.js');
+                echo $this->Html->script('swipe.js');
+                echo $this->Html->script('jquery.mobile.custom.min.js');
 	?>
-
+        
 </head>
 <body>
 <div id="container">
