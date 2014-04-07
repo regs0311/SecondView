@@ -1,40 +1,243 @@
-<div class="photos index">
-	<h2><?php echo __('Photos'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<tr>
-			<th><?php echo $this->Paginator->sort('description'); ?></th>
-			<th><?php echo $this->Paginator->sort('src'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($photos as $photo): ?>
-	<tr>
-		<td><?php echo h($photo['Photo']['description']); ?>&nbsp;</td>
-		<td><?php echo $this->Html->image($photo['Photo']['src'], array('alt' => 'picture', 'height'=>'300','width'=>'300')); ?>&nbsp;</td>
-		<td><?php echo h($photo['Photo']['created']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $photo['Photo']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+<script>
+  $(document).ready(function() 
+  {
+    $(".arrow").each(function() {
+      $(this).css("height", $( document ).height() - 100); 
+    });
+  });
+</script>
+<?php
+  if(isset($_GET['param'])) { ?>
+  <div class="text-center message">
+<?php 
+    $value = $_GET['param'];
+    if($value == 'e') {
+	    echo 'An error occured';
+    } elseif ($value == 's') {
+	    echo 'Success';
+    }
+?>
+  </div>
+<?php } ?>
+<div class="container-fluid navbarfix">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="col-md-10 col-md-offset-1 profile-info">
+	    <div class="thumbnail">
+          <?php echo $this->Html->image($user['User']['profilepic'], array('alt' => 'profile picture')); ?>
+	    </div>
+	    <label><?php echo h($user['User']['description']); ?></label>    
+	    <table class="table">
+	      <tbody>
+	        <tr>
+	          <td>Followers</td>
+	          <td>Following</td>
+	        </tr>
+	        <tr>
+	          <td>10<!-- add php here --></td>
+	          <td>20<!-- add php here --></td>
+	        </tr>
+	        <tr>
+	          <td>Photos</td>
+	          <td>Rating</td>
+	        </tr>
+	        <tr>
+	          <td><?php echo count($myphotos)?></td>
+	          <td>5/5<!-- add php here --></td>
+	        </tr>
+	      </tbody>
+	    </table>
+        <div>
+	      <span class="glyphicon glyphicon-user"></span>
+          <span><?php echo h($user['User']['username']); ?></span>
+          <span>(<?php echo h($user['User']['name']); ?>)</span>
+        </div>
+        <div>
+          <span class="glyphicon glyphicon-envelope"></span>
+          <span><?php echo h($user['User']['email']); ?></span>
+        </div>
+        <br/>
+        <br/>
+        <div class="text-center">
+          <a data-toggle="modal" data-target="#modalUploadPicture" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-camera"></i> Upload</a>
+        </div>
+        <br/>
+        <br/>
+        <a data-toggle="modal" data-target="#modalChangeProfilePicture" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-cog"></i> Change Profile Picture</a>
+        <a data-toggle="modal" data-target="#modalChangeDescription" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-cog"></i> Change Description</a>
+        <a data-toggle="modal" data-target="#modalChangePassword" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-cog"></i> Change Password</a>     
+      </div> <!-- coll-md-10 -->
+    </div> <!-- col-md-3 -->
+    <div class="col-md-9">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+	    <?php 
+          $i = 0;
+          foreach ($photos as $photo):
+            if($i == 0) {
+              echo "<li data-target='#myCarousel' data-slide-to='" . $i . "' class='active'></li>\n";
+		    }
+            else {
+              echo "<li data-target='#myCarousel' data-slide-to='" . $i . "'></li>\n";
+		    }
+ 		    $i++;
+          endforeach; 
+        ?>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+	      <?php 
+            $i = 0;
+            foreach ($photos as $photo):
+              if($i == 0) { ?>
+                <div class='item active'>
+                  <?php echo $this->Html->image($photo['Photo']['src'], array('alt' => '...')); ?>
+		        </div>
+		      <?php 
+		      }
+              else { ?>
+                <div class='item'>
+                  <?php echo $this->Html->image($photo['Photo']['src'], array('alt' => '...')); ?>
+		        </div>
+		      <?php
+		      }
+ 		      $i++;
+            endforeach; 
+          ?>
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control arrow" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control arrow" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div> <!-- myCatousel -->
+    </div> <!-- col-md-7 -->
+ </div> <!-- row -->
+</div> <!-- container fluid navbar  -->
+
+
+<!-- Modal for change uploading picture -->
+<div class="modal fade" id="modalUploadPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Upload photo</h4>
+      </div>
+      <div class="modal-body">
+        <?php echo $this->Form->create('Photo', array('enctype' => 'multipart/form-data', 
+                                                      'class' => 'form',
+                                                      'url' => '/photos/add')); ?>
+        <div class="form-group">
+		<?php echo $this->Form->input('picture', array('label' => 'Photo', 
+                                                       'type'  => 'file',
+                                                       'class' => 'form-control')); ?>
+        </div>
+        <div class="form-group">
+        <?php echo $this->Form->input('description', array('label' => 'Description', 
+                                                           'placeholder' => 'Describe your photo!', 
+                                                           'class' => 'form-control')); ?>
+        </div>
+        <?php echo $this->Form->end(array( 'class' => 'btn btn-default',
+                                           'label' => 'Submit')); ?>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Photo'), array('action' => 'add')); ?></li>
-	</ul>
+
+<!-- Modal for change password -->
+<div class="modal fade" id="modalChangePassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Change Password</h4>
+      </div>
+      <div class="modal-body">
+        <?php echo $this->Form->create('User', array(
+                                       'role' => 'form',
+                                       'url' => '/users/changepassword/'.$user['User']['id'])); 
+        ?>
+        <div class="form-group">
+		<?php echo $this->Form->input('newpassword', array(
+							          'label' => 'New password',
+								      'type' => 'password',
+								      'class' => 'form-control',
+		  )); ?>
+        </div>
+        <div class="form-group">
+		<?php echo $this->Form->input('oldpassword', array(
+								      'label' => 'Old password',
+								      'required' => true,
+								      'type' => 'password',
+								      'class' => 'form-control',
+		  ));
+	    ?>
+        </div>
+        <?php echo $this->Form->end(array( 'class' => 'btn btn-default',
+                                           'label' => 'Submit')); ?>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for change description -->
+<div class="modal fade" id="modalChangeDescription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Change Description</h4>
+      </div>
+      <div class="modal-body">
+        <?php echo $this->Form->create('User', array(
+                                       'role' => 'form',
+                                       'url' => '/users/changedescription/'.$user['User']['id'])); 
+        ?>
+        <div class="form-group">
+		<?php
+		  echo $this->Form->input('description', array(
+		                          'label' => 'New Description',
+							      'type' => 'textarea',
+							      'class' => 'form-control',
+		  ));
+	    ?>
+        </div>
+        <?php echo $this->Form->end(array( 'class' => 'btn btn-default',
+                                           'label' => 'Submit')); ?>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for change profile picture -->
+<div class="modal fade" id="modalChangeProfilePicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Change Profile Picture</h4>
+      </div>
+      <div class="modal-body">
+        <?php echo $this->Form->create('User', array(
+                                       'role' => 'form',
+                                       'url' => '/users/changepp/'.$user['User']['id'],
+                                       'enctype' => 'multipart/form-data')); 
+        ?>
+        <div class="form-group">
+		<?php
+		  echo $this->Form->input('picture', array(
+							      'label' => 'Select your new profile picture',
+								  'type'  => 'file',
+		  ));
+	    ?>
+        </div>
+        <?php echo $this->Form->end(array( 'class' => 'btn btn-default',
+                                           'label' => 'Submit')); ?>
+      </div>
+    </div>
+  </div>
 </div>

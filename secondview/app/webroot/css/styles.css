@@ -55,21 +55,17 @@ body {
   margin-top: 20px;
 }
 
-.user_info > h3 {
-  color: rgb(170,170,170);
-}
-
-.profile_info {
+.profile-info {
+  text-align: center;
   padding: 20px;
   /*color: rgba(21,164,178,0.6); */
   color: white;
   border: 1px solid;
-  border-radius: 5px;
   border-color: rgb(170,170,170);
 }
 
 .carousel-inner {
-  height: 400px;
+  text-align: center;
   overflow-y: hidden;
   padding-left: 0px;
   padding-right: 0px;
@@ -156,3 +152,5 @@ body {
 .detail-img {
   width: 100%;
 }
+
+.carousel .item > img { display: inline-block; }

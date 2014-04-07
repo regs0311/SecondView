@@ -72,14 +72,10 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-		$this->set('user', $this->User->find('first', $options));
-
+		$this->set('user', $this->User->findById($this->Auth->user('id')));
 		$this->loadModel('Photo');
-		
-                //$conditions = array('User.id' => '4');
-                $this->set('photos', $this->Photo->find('all'));
-
+		// Display all your pictures in your profile
+        $this->set('myphotos', $this->Photo->findAllByUserId($this->Auth->user('id')));
 	}
 
 /**
@@ -119,10 +115,9 @@ class UsersController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			$this->request->data['User']['id'] = $this->Auth->user('id');
 			if ($this->User->save($this->request->data)) {
-								$this->Session->setFlash(__('Description changed'));
-				return $this->redirect(array('controller' => 'photos', 'action' => 'index'));
+				$this->redirect(array('controller' => 'users', 'action' => 'view', $this->Auth->user('id'), "?" => array('param' => 's')));
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				$this->redirect(array('controller' => 'users', 'action' => 'view', $this->Auth->user('id'), "?" => array('param' => 'e')));
 			}	
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
@@ -147,13 +142,13 @@ class UsersController extends AppController {
 				$this->request->data['User']['id'] = $this->Auth->user('id');
 				$this->request->data['User']['password'] = $this->request->data['User']['newpassword'];
 				if ($this->User->save($this->request->data)) {
-					$this->Session->setFlash(__('Password changed'));
-					return $this->redirect(array('controller' => 'photos', 'action' => 'index'));
+				    $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Auth->user('id'), "?" => array('param' => 's')));
 				} else {
-					$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				    $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Auth->user('id'), "?" => array('param' => 'e')));
 				}
 			} else {
-				$this->Session->setFlash(__('Wrong password'));
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			    $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Auth->user('id'), "?" => array('param' => 'e')));
 			}
 				
 		} else {
@@ -174,7 +169,7 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-		if ($this->request->is('put')) {
+		if ($this->request->is(array('post', 'put'))) {
 			$this->request->data['User']['id'] = $this->Auth->user('id');
 			$file = $this->request->data['User']['picture'];
 			$dir = 'img/users/' . $user['User']['username'];
@@ -187,12 +182,12 @@ class UsersController extends AppController {
 				$nfile->close();	
 				// Upload new one
 				move_uploaded_file($file['tmp_name'], $dir . '/profilepic.' . $ext);
-				$this->Session->setFlash(__('Profile picture changed'));
-				return $this->redirect(array('controller' => 'photos', 'action' => 'index'));
+				$this->redirect(array('controller' => 'users', 'action' => 'view', $this->Auth->user('id'), "?" => array('param' => 's')));
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				$this->redirect(array('controller' => 'users', 'action' => 'view', $this->Auth->user('id'), "?" => array('param' => 'e')));
 			}
 		} else {
+		    error_log('hola');
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
 		}

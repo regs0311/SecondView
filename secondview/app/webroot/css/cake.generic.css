@@ -401,7 +401,7 @@ form .error-message {
 /** Notices and Errors **/
 .message {
 	clear: both;
-	color: #fff;
+	color: #e73535;
 	font-size: 140%;
 	font-weight: bold;
 	margin: 0 0 1em 0;

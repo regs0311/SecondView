@@ -13,8 +13,8 @@
          <h3>TODO: Comments div</h3>
             <?php
 		echo $this->Form->input('photo_id', array(
-					'type' => 'hidden',
-					'value' => $photo['Photo']['id']
+					            'type' => 'hidden',
+					            'value' => $photo['Photo']['id']
 		));
 		echo $this->Form->input('comment');
 	    ?>

@@ -21,8 +21,13 @@ class PhotosController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Photo->recursive = 0;
-		$this->set('photos', $this->Paginator->paginate());
+
+		$this->set('photos', $this->Photo->find('all'));
+		$this->loadModel('User');
+		// Display all your pictures in your profile
+        $this->set('user', $this->User->findById($this->Auth->user('id')));
+        $this->set('myphotos', $this->Photo->findAllByUserId($this->Auth->user('id')));
+
 	}
 
 /**
@@ -59,10 +64,9 @@ class PhotosController extends AppController {
 			if ($this->Photo->save($this->request->data)) {
 				// Copy photo to server
 				move_uploaded_file($file['tmp_name'], $dir . $random_name . '.' . $ext);
-				$this->Session->setFlash(__('The photo has been added.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index',  "?" => array('param' => 's')));
 			} else {
-				$this->Session->setFlash(__('The photo could not be saved. Please, try again.'));
+				return $this->redirect(array('action' => 'index',  "?" => array('param' => 'e')));
 			}
 		}
 	}
