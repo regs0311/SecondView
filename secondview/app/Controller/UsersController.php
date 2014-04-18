@@ -24,7 +24,7 @@ class UsersController extends AppController {
  */
  	public function beforeFilter() {
 	 	parent::beforeFilter();
-	 	$this->Auth->allow('add','logout');
+	 	$this->Auth->allow('add', 'view');
  	}
  	
 /**
@@ -50,16 +50,6 @@ class UsersController extends AppController {
  	public function logout() {
 	 	return $this->redirect($this->Auth->logout());
  	}
- 
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->User->recursive = 0;
-		$this->set('users', $this->Paginator->paginate());
-	}
 
 /**
  * view method
@@ -72,10 +62,11 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-		$this->set('user', $this->User->findById($this->Auth->user('id')));
+		$this->set('user', $this->User->findById($id));
 		$this->loadModel('Photo');
 		// Display all your pictures in your profile
-        $this->set('myphotos', $this->Photo->findAllByUserId($this->Auth->user('id')));
+		$this->set('myphotos', count($this->Photo->findAllByUserId($id)));
+        $this->set('photos', $this->Photo->findAllByUserId($id));
 	}
 
 /**
@@ -202,7 +193,7 @@ class UsersController extends AppController {
  */	
 	public function isAuthorized($user) {
 	    // All registered users can do this
-	    if (in_array($this->action, array('view', 'index', 'logout'))) {
+	    if (in_array($this->action, array('index', 'logout'))) {
 	        return true;
 	    }
 	    

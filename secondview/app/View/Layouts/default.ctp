@@ -8,7 +8,7 @@
       echo $this->Html->css('bootstrap.min.css');
       echo $this->Html->css('styles.css');
       echo $this->fetch('meta');
-      echo $this->fetch('css');
+      echo $this->fetch('css'); 
       echo $this->fetch('script');
       echo $this->Html->script('jquery-2.1.0.js');
       echo $this->Html->script('bootstrap.js');
@@ -29,31 +29,31 @@
               <span class="icon-bar"></span>	
             </button>
             <a class="navbar-brand" rel="home" href="/secondview/photos/index" title="label">Second View</a>
-          </div>		
-          <?php if($this->Session->read('Auth.User')) { ?>
-            <div class='collapse navbar-collapse navbar-ex1-collapse'>
+          </div> <!-- nav-header -->		
+          <div class='collapse navbar-collapse navbar-ex1-collapse'>
+            <?php if($this->Session->read('Auth.User')) { ?>
               <ul class='nav navbar-nav'>
                 <li><a href='/secondview/users/view/<?php echo AuthComponent::user('id') ?>'>Profile</a></li>
                 <li><a href='#'>About</a></li>   
               </ul>
-              <div class="col-md-3 pull-right">
-                <form class="navbar-form" role="search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" name="srch-word" id="srch"/>
-                    <div class="input-group-btn">
-                      <button class="btn btn-default" type="Submit"><i class="glyphicon glyphicon-search"></i></button>
-                    </div>	
-                  </div> 
-                </form>
-              </div>
               <ul class='nav navbar-nav navbar-right'>
                 <li><a href='/secondview/users/logout'><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>    
               </ul>
-            </div>           
-          <?php } ?>
-        </div>
-        <?php echo $this->fetch('content'); ?>
+            <?php } ?>
+            <div class="col-md-3 pull-right">
+              <form class="navbar-form" role="search">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search" name="srch-word" id="srch"/>
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" type="Submit"><i class="glyphicon glyphicon-search"></i></button>
+                  </div>	
+                </div> 
+              </form>
+            </div>
+          </div> <!-- collapse navbar-collapse navbar-ex1-collapse-->
+        </div> <!-- navbar navbar-inverse navbar-static-top -->  
+        <?php echo $this->fetch('content'); ?>      
       </div> <!-- content -->
-    </div> <!-- container -->
+    </div> <!-- content --> 
   </body>
 </html>

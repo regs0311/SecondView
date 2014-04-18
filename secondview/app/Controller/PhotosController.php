@@ -15,6 +15,17 @@ class PhotosController extends AppController {
  */
 	public $components = array('Paginator');
 
+	
+/**
+ * beforeFilter method
+ *
+ * @return void
+ */
+ 	public function beforeFilter() {
+	 	parent::beforeFilter();
+	 	$this->Auth->allow('view');
+ 	}
+
 /**
  * index method
  *
@@ -26,7 +37,7 @@ class PhotosController extends AppController {
 		$this->loadModel('User');
 		// Display all your pictures in your profile
         $this->set('user', $this->User->findById($this->Auth->user('id')));
-        $this->set('myphotos', $this->Photo->findAllByUserId($this->Auth->user('id')));
+        $this->set('myphotos', count($this->Photo->findAllByUserId($this->Auth->user('id'))));
 
 	}
 
