@@ -4,6 +4,9 @@
     $(".arrow").each(function() {
       $(this).css("height", $( document ).height() - 100); 
     });
+    $(".pic").each(function() {
+      $(this).css("height", $( document ).height() - 100); 
+    });
   });
 </script>
 <?php

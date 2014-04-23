@@ -23,7 +23,7 @@ class PhotosController extends AppController {
  */
  	public function beforeFilter() {
 	 	parent::beforeFilter();
-	 	$this->Auth->allow('view');
+	 	$this->Auth->allow('view','search');
  	}
 
 /**
@@ -39,6 +39,35 @@ class PhotosController extends AppController {
         $this->set('user', $this->User->findById($this->Auth->user('id')));
         $this->set('myphotos', count($this->Photo->findAllByUserId($this->Auth->user('id'))));
 
+	}
+	
+/**
+ * searcg method
+ *
+ * @return void
+ */	
+	public function search() {
+		if($this->request->is('post')) {
+			$terms = $this->request->data['Photo']['srch-word'];
+			$array_terms = preg_split('/[\ \n\,]+/', $terms);
+			$numterms = count($array_terms);
+			$i = 0;
+			$usersQuery = '';
+			$photosQuery = '';
+			foreach ($array_terms as $term) {
+			    if ($i != 0) {
+					$usersQuery = $usersQuery . " OR username LIKE '%" . $term . "%'";
+					$photosQuery = $photosQuery . " OR description LIKE '%" . $term . "%'";  
+			    } else {
+				    $usersQuery = "username LIKE '%" . $term . "%'";
+					$photosQuery = "description LIKE '%" . $term . "%'";
+			    }
+			    $i++;
+			}
+			$this->set('photos', $this->Photo->query("SELECT * FROM photos WHERE " . $photosQuery));
+			$this->loadModel('User');
+			$this->set('users', $this->User->query("SELECT * FROM users WHERE " . $usersQuery));
+		}
 	}
 
 /**
@@ -81,7 +110,7 @@ class PhotosController extends AppController {
 			}
 		}
 	}
-	
+
 	public function isAuthorized($user) {
     	// All registered users can view and add photos
     	if (in_array($this->action, array('view', 'add', 'index'))) {

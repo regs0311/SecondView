@@ -23,6 +23,8 @@
           if($i == 0) { ?>
             <div class='item active'>
               <?php echo $this->Html->image($photo['Photo']['src'], array('alt' => '...',
+                                                                          'class' => 'pic',
+                                                                          'style' => 'display: block; margin: 0 auto',
                                                                           'url' => array('controller' => 'photos',       
                                                                                          'action' => 'view', 
                                                                                          $photo['Photo']['id']))); ?>
@@ -32,6 +34,8 @@
           else { ?>
             <div class='item'>
               <?php echo $this->Html->image($photo['Photo']['src'], array('alt' => '...',
+                                                                          'class' => 'pic',
+                                                                          'style' => 'display: block; margin: 0 auto',
                                                                           'url' => array('controller' => 'photos',       
                                                                                          'action' => 'view', 
                                                                                          $photo['Photo']['id']))); ?>		        

@@ -41,14 +41,22 @@
               </ul>
             <?php } ?>
             <div class="col-md-3 pull-right">
-              <form class="navbar-form" role="search">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search" name="srch-word" id="srch"/>
-                  <div class="input-group-btn">
-                    <button class="btn btn-default" type="Submit"><i class="glyphicon glyphicon-search"></i></button>
-                  </div>	
-                </div> 
-              </form>
+              <?php echo $this->Form->create('Photo', array('role'   => 'form',
+                                                            'url'    => array('controller' => 'photos',       
+                                                                              'action'     => 'search'),
+                                                            'class'  => 'navbar-form')); 
+              ?>
+              <div class="input-group">
+                <?php echo $this->Form->input('srch-word', array('label'       => false, 
+                                                                 'placeholder' => 'Search', 
+                                                                 'class'       => 'form-control',
+                                                                 'id'          => 'srch',
+                                                                 'div'         => false)); ?>
+	            <div class="input-group-btn">
+	              <button class="btn btn-default" type="Submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+              </div>
+              <?php echo $this->Form->end(); ?>
             </div>
           </div> <!-- collapse navbar-collapse navbar-ex1-collapse-->
         </div> <!-- navbar navbar-inverse navbar-static-top -->  
