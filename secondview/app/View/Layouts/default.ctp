@@ -36,9 +36,17 @@
                 <li><a href='/secondview/users/view/<?php echo AuthComponent::user('id') ?>'>Profile</a></li>
                 <li><a href='#'>About</a></li>   
               </ul>
-              <ul class='nav navbar-nav navbar-right'>
-                <li><a href='/secondview/users/logout'><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>    
-              </ul>
+              <span class="btn-group navbar-right" style="top:9px;right:15px">
+                <button class="btn btn-default"><i class="glyphicon glyphicon-cog"></i></button>
+                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a data-toggle="modal" data-target="#modalChangeProfilePicture">Change Profile Picture</a></li> 
+                  <li><a data-toggle="modal" data-target="#modalChangeDescription">Change Description</a></li>
+                  <li><a data-toggle="modal" data-target="#modalChangePassword">Change Password</a></li>
+                  <li class="divider"></li>
+                  <li><a href='/secondview/users/logout'><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                </ul>
+              </span>   
             <?php } ?>
             <div class="col-md-3 pull-right">
               <?php echo $this->Form->create('Photo', array('role'   => 'form',

@@ -1,4 +1,5 @@
 <div class="col-md-9">
+  <?php if($photos) { ?>
   <div class="text-center">
   	<h4 style="color:white">Photos founded</h4>
   </div>
@@ -57,4 +58,9 @@
       <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
   </div> <!-- myCatousel -->
+  <?php } else { ?>
+  <div class="text-center">
+  	<h4 style="color:white">No photos founded</h4>
+  </div>
+  <?php } ?>
 </div> <!-- col-md-9 -->

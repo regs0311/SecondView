@@ -2,7 +2,7 @@
   $(document).ready(function() 
   {
     $(".arrow").each(function() {
-      $(this).css("height", $( document ).height() - 250); 
+      $(this).css("height", $( document ).height() - 170); 
     });
     $(".usersidebar").each(function() {
       $(this).css("height", $( document ).height() - 220); 

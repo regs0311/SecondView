@@ -42,7 +42,7 @@ class PhotosController extends AppController {
 	}
 	
 /**
- * searcg method
+ * search method
  *
  * @return void
  */	

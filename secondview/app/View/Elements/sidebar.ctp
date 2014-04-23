@@ -35,6 +35,7 @@
     </div>
     <br/>
     <br/>
+    <?php if($this->Session->read('Auth.User')) { ?>
     <div class="text-center">
       <?php if (AuthComponent::user('id') == $user['User']['id']) { ?>
         <a data-toggle="modal" data-target="#modalUploadPicture" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-camera"></i> Upload</a>
@@ -42,10 +43,6 @@
         <a data-toggle="modal" data-target="" class="btn btn-default btn-lg">Follow <i class="glyphicon glyphicon-plus-sign"></i></a>
       <?php } ?>
     </div>
-    <br/>
-    <br/>
-    <a data-toggle="modal" data-target="#modalChangeProfilePicture" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-cog"></i> Change Profile Picture</a>
-    <a data-toggle="modal" data-target="#modalChangeDescription" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-cog"></i> Change Description</a>
-    <a data-toggle="modal" data-target="#modalChangePassword" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-cog"></i> Change Password</a>     
+    <?php } ?>   
   </div> <!-- coll-md-10 -->
 </div> <!-- col-md-3 -->
