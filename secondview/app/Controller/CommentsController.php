@@ -28,7 +28,6 @@ class CommentsController extends AppController {
 	
 	public function isAuthorized($user) {
 
-        // The owner of a post can delete it
         if ($this->action === 'add') {
         	return true;
         }

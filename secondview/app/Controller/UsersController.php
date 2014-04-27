@@ -67,6 +67,10 @@ class UsersController extends AppController {
 		// Display all your pictures in your profile
 		$this->set('myphotos', count($this->Photo->findAllByUserId($id)));
         $this->set('photos', $this->Photo->findAllByUserId($id));
+        // Know if the user follows that user
+        $this->loadModel('Follower');
+        $this->set('follows', $this->Follower->query("SELECT id FROM followers WHERE follower_id = " . $this->Auth->user('id') . " AND followed_id = " . $id));
+        
 	}
 
 /**

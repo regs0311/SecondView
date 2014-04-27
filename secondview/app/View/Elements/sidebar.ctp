@@ -39,9 +39,22 @@
     <div class="text-center">
       <?php if (AuthComponent::user('id') == $user['User']['id']) { ?>
         <a data-toggle="modal" data-target="#modalUploadPicture" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-camera"></i> Upload</a>
-      <?php } else { ?>
-        <a data-toggle="modal" data-target="" class="btn btn-default btn-lg">Follow <i class="glyphicon glyphicon-plus-sign"></i></a>
-      <?php } ?>
+      <?php } elseif ($follows) { ?>
+        <a href="/secondview/followers/delete/<?php echo $follows[0]['followers']['id']; ?>" class="btn btn-default btn-lg" type="Submit">Unfollow <i class="glyphicon glyphicon-minus-sign"></i></a>
+      <?php } else { 
+                echo $this->Form->create('Follower', array(
+                                         'role' => 'form',
+                                         'url' => array('controller' => 'followers',       
+                                                        'action' => 'add')));  
+                echo $this->Form->input('followed_id', array(
+					                    'type' => 'hidden',
+					                    'value' => $user['User']['id']));                                     
+      ?>
+      <button class="btn btn-default btn-lg" type="Submit">Follow <i class="glyphicon glyphicon-plus-sign"></i></button>
+      <?php 
+          echo $this->Form->end();
+        } 
+	  ?>
     </div>
     <?php } ?>   
   </div> <!-- coll-md-10 -->

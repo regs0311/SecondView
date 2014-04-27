@@ -41,13 +41,6 @@ class Photo extends AppModel {
     	return false;
     }
     
-    /**
-    public $belongsTo = array(
-        'User' => array(
-            'className' => 'User',
-            'foreignKey' => 'id_user'
-        )
-    ); **/
 
     public $belongsTo = 'User';
     

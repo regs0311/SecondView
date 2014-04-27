@@ -131,8 +131,15 @@ class User extends AppModel {
     
      public $hasMany = array(
      	'Photo',
-     	'Comment'
+     	'Comment',
+     	'Followers' => array('className' => 'Follower',
+                             'foreignKey' => 'follower_id',
+                             'dependent'=> true
+        ),
+        'FollowingUsers' => array('className' => 'Follower',
+                                  'foreignKey' => 'followed_id',
+                                  'dependent'=> true
+        ),
      );
- 	
  
 }
