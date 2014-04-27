@@ -69,7 +69,9 @@ class UsersController extends AppController {
         $this->set('photos', $this->Photo->findAllByUserId($id));
         // Know if the user follows that user
         $this->loadModel('Follower');
-        $this->set('follows', $this->Follower->query("SELECT id FROM followers WHERE follower_id = " . $this->Auth->user('id') . " AND followed_id = " . $id));
+        $this->set('follows', count($this->Follower->query("SELECT id FROM followers WHERE follower_id = " . $id)));
+        $this->set('following', count($this->Follower->query("SELECT id FROM followers WHERE followed_id = " . $id)));
+        $this->set('isfollowing', $this->Follower->query("SELECT id FROM followers WHERE follower_id = " . $this->Auth->user('id') . " AND followed_id = " . $id));
         
 	}
 

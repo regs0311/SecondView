@@ -38,6 +38,10 @@ class PhotosController extends AppController {
 		// Display all your pictures in your profile
         $this->set('user', $this->User->findById($this->Auth->user('id')));
         $this->set('myphotos', count($this->Photo->findAllByUserId($this->Auth->user('id'))));
+        
+        $this->loadModel('Follower');
+        $this->set('follows', count($this->Follower->query("SELECT id FROM followers WHERE follower_id = " . $this->Auth->user('id'))));
+        $this->set('following', count($this->Follower->query("SELECT id FROM followers WHERE followed_id = " . $this->Auth->user('id'))));
 
 	}
 	

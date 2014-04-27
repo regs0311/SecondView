@@ -11,8 +11,8 @@
           <td>Following</td>
         </tr>
         <tr>
-          <td>10<!-- add php here --></td>
-          <td>20<!-- add php here --></td>
+          <td><?php echo $following ?></td>
+          <td><?php echo $follows ?></td>
         </tr>
         <tr>
           <td>Photos</td>
@@ -39,8 +39,8 @@
     <div class="text-center">
       <?php if (AuthComponent::user('id') == $user['User']['id']) { ?>
         <a data-toggle="modal" data-target="#modalUploadPicture" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-camera"></i> Upload</a>
-      <?php } elseif ($follows) { ?>
-        <a href="/secondview/followers/delete/<?php echo $follows[0]['followers']['id']; ?>" class="btn btn-default btn-lg" type="Submit">Unfollow <i class="glyphicon glyphicon-minus-sign"></i></a>
+      <?php } elseif ($isfollowing) { ?>
+        <a href="/secondview/followers/delete/<?php echo $isfollowing[0]['followers']['id']; ?>" class="btn btn-default btn-lg" type="Submit">Unfollow <i class="glyphicon glyphicon-minus-sign"></i></a>
       <?php } else { 
                 echo $this->Form->create('Follower', array(
                                          'role' => 'form',
