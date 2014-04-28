@@ -33,16 +33,25 @@ class PhotosController extends AppController {
  */
 	public function index() {
 
-		$this->set('photos', $this->Photo->find('all'));
 		$this->loadModel('User');
-		// Display all your pictures in your profile
+		// Display all your info
         $this->set('user', $this->User->findById($this->Auth->user('id')));
         $this->set('myphotos', count($this->Photo->findAllByUserId($this->Auth->user('id'))));
         
         $this->loadModel('Follower');
         $this->set('follows', count($this->Follower->query("SELECT id FROM followers WHERE follower_id = " . $this->Auth->user('id'))));
         $this->set('following', count($this->Follower->query("SELECT id FROM followers WHERE followed_id = " . $this->Auth->user('id'))));
-
+        
+        // Get users that you follow
+        $listFollowing = $this->Follower->query("SELECT followed_id FROM followers WHERE follower_id = " . $this->Auth->user('id'));
+        
+        // Retrieve the ids of the followed users
+        $following = array();
+        foreach($listFollowing as $fol) {
+	    	array_push($following, $fol['followers']['followed_id']); 
+        }
+        $this->Photo->recursive = 0;
+        $this->set('photos', $this->Photo->findAllByUserId($following));
 	}
 	
 /**

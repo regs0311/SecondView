@@ -1,4 +1,5 @@
 <div class="col-md-9">
+  <?php if($photos) { ?>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -54,4 +55,9 @@
       <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
   </div> <!-- myCatousel -->
+  <?php } else { ?>
+  <div class="text-center">
+  	<h4 style="color:white">You don't follow anyone</h4>
+  </div>
+  <?php } ?>
 </div> <!-- col-md-9 -->
