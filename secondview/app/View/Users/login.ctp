@@ -4,7 +4,9 @@
 <div class="jumbotron">
   <div class="container">
     <h1 class="jumbotron-header">Second View</h1>			
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in tristique erat. Proin viverra hendrerit nibh eu pharetra. Proin tincidunt mi quis nulla lacinia, id tempor enim dapibus. Cras suscipit tristique dolor. Etiam feugiat commodo vestibulum. In egestas erat augue. Donec pulvinar hendrerit enim, vitae interdum ipsum pretium id. Aliquam. </p>		
+    <p>SecondView is a cool and professional way to share your picture with other photographers and
+future employers. We won't let your hard work and soul be buried in the sea of selfies and breakfast pictures. Upload your best pictures. Let other people see them. Interact with photographers. With SecondView, you'll see the world in a different way.
+    </p>
     <?php if(!$this->Session->read('Auth.User')) { ?>
       <button class="btn btn-default btn-xlarge btn-transp" data-toggle="modal" data-target="#myModal">Login</button>
       <a href='/secondview/users/add' class="btn btn-info btn-xlarge btn-transp">Register</a>	
