@@ -20,7 +20,13 @@
         </tr>
         <tr>
           <td><?php echo $myphotos?></td>
-          <td>5/5<!-- add php here --></td>
+          <td>
+              <span class="glyphicon glyphicon-star"></span>
+              <span class="glyphicon glyphicon-star"></span>
+              <span class="glyphicon glyphicon-star"></span>
+              <span class="glyphicon glyphicon-star-empty"></span>
+              <span class="glyphicon glyphicon-star-empty"></span>
+	  </td>
         </tr>
       </tbody>
     </table>
