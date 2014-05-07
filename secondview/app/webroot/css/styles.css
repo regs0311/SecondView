@@ -151,6 +151,25 @@ body {
 
 .detail-img {
   width: 100%;
+  padding: 2px;
+  background-color: white;
+  border: 1px solid grey;
+}
+
+.comment {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid white;
+}
+
+.smallpic {
+  padding: 2px;
+  border: 1px solid grey;
+  background-color: white;
+}
+
+.p-block {
+  display: inline;
 }
 
 .carousel .item > img { display: inline-block; }
