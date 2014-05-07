@@ -24,7 +24,7 @@ class UsersController extends AppController {
  */
  	public function beforeFilter() {
 	 	parent::beforeFilter();
-	 	$this->Auth->allow('add', 'view');
+	 	$this->Auth->allow('add', 'view', 'follows');
  	}
  	
 /**
@@ -71,8 +71,9 @@ class UsersController extends AppController {
         $this->loadModel('Follower');
         $this->set('follows', count($this->Follower->query("SELECT id FROM followers WHERE follower_id = " . $id)));
         $this->set('following', count($this->Follower->query("SELECT id FROM followers WHERE followed_id = " . $id)));
-        $this->set('isfollowing', $this->Follower->query("SELECT id FROM followers WHERE follower_id = " . $this->Auth->user('id') . " AND followed_id = " . $id));
-        
+        if($this->Auth->user()) {
+	    	$this->set('isfollowing', $this->Follower->query("SELECT id FROM followers WHERE follower_id = " . $this->Auth->user('id') . " AND followed_id = " . $id));   
+        }
 	}
 
 /**
@@ -97,6 +98,31 @@ class UsersController extends AppController {
 			}	
 		}
 	}
+	
+/** 
+ * showFollows method
+ *
+ * @return void
+ */
+ 	public function follows($id = null) {
+	 	if (!$this->User->exists($id)) {
+		 	throw new NotFoundException(__('Invalid user'));
+	 	}
+	 	$this->set('user', $this->User->findById($id));
+	 	$this->loadModel('Photo');
+		// Display all your pictures in your profile
+		$this->set('myphotos', count($this->Photo->findAllByUserId($id)));
+		$this->loadModel('Follower');
+        $this->set('follows', count($this->Follower->query("SELECT id FROM followers WHERE follower_id = " . $id)));
+        $this->set('following', count($this->Follower->query("SELECT id FROM followers WHERE followed_id = " . $id)));
+        if($this->Auth->user()) {
+	    	$this->set('isfollowing', $this->Follower->query("SELECT id FROM followers WHERE follower_id = " . $this->Auth->user('id') . " AND followed_id = " . $id));   
+        }
+        $this->set('userFollows', $this->Follower->query("SELECT user.id, user.profilepic, user.username FROM users user, followers f where user.id = f.followed_id AND follower_id = " . $id));
+        $this->set('userFollowing', $this->Follower->query("SELECT user.id, user.profilepic, user.username FROM users user, followers f where user.id = f.follower_id AND followed_id = " . $id));
+		
+ 	}
+
 
 /**
  * changedescription method

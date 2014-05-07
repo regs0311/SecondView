@@ -7,8 +7,8 @@
     <table class="table">
       <tbody>
         <tr>
-          <td>Followers</td>
-          <td>Following</td>
+          <td><a href="/secondview/users/follows/<?php echo $user['User']['id'] ?>" class="btn btn-link">Followers</a></td>
+          <td><a href="/secondview/users/follows/<?php echo $user['User']['id'] ?>" class="btn btn-link">Following</a></td>
         </tr>
         <tr>
           <td><?php echo $following ?></td>
