@@ -28,13 +28,14 @@
               <span class="icon-bar"></span>	
               <span class="icon-bar"></span>	
             </button>
-            <a class="navbar-brand" rel="home" href="/secondview/photos/index" title="label">Second View</a>
+            <a class="navbar-brand" rel="home" href="/secondview/photos/index" title="label"><span class="glyphicon glyphicon-leaf">  
+                                                                                             </span>   Second View</a>
           </div> <!-- nav-header -->		
           <div class='collapse navbar-collapse navbar-ex1-collapse'>
             <?php if($this->Session->read('Auth.User')) { ?>
               <ul class='nav navbar-nav'>
                 <li><a href='/secondview/users/view/<?php echo AuthComponent::user('id') ?>'>Profile</a></li>
-                <li><a href='#'>About</a></li>   
+                <li><a href='/secondview/about/'>About</a></li>   
               </ul>
               <span class="btn-group navbar-right" style="top:9px;right:15px">
                 <button class="btn btn-default"><i class="glyphicon glyphicon-cog"></i></button>
