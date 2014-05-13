@@ -1,7 +1,8 @@
 <div class="col-md-9">
   <?php if($photos) { ?>
   <div class="text-center">
-  	<h4 style="color:white">Photos founded</h4>
+  	<h4 style="color:white"><?php echo count($photos)?> <?php if(count($photos) == 1) {echo "photo found";} else {echo "photos found";}?>
+        </h4>
   </div>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -60,7 +61,7 @@
   </div> <!-- myCatousel -->
   <?php } else { ?>
   <div class="text-center">
-  	<h4 style="color:white">No photos founded</h4>
+  	<h4 style="color:white">No photos found</h4>
   </div>
   <?php } ?>
 </div> <!-- col-md-9 -->
