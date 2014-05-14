@@ -18,7 +18,6 @@ class CommentsController extends AppController {
 			$this->request->data['Comment']['user_id'] = $this->Auth->user('id');
 			$this->Comment->create();
 			if ($this->Comment->save($this->request->data)) {
-				$this->Session->setFlash(__('The comment has been saved.'));
 				return $this->redirect(array('controller' => 'photos', 'action' => 'view', $this->request->data['Comment']['photo_id'] ));
 			} else {
 				$this->Session->setFlash(__('The comment could not be saved. Please, try again.'));

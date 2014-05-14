@@ -9,18 +9,23 @@
    <div class="row">
       <div class="col-md-10 col-md-offset-1 add-comment">
          <div class="row" style="padding-bottom: 35px; border-bottom: 1px solid white;">
-            <div class="col-md-2">
-               <span><b>Rating:</b></span>
-               <span class="glyphicon glyphicon-star"></span>
-               <span class="glyphicon glyphicon-star"></span>
-               <span class="glyphicon glyphicon-star"></span>
-               <span class="glyphicon glyphicon-star"></span>
-               <span class="glyphicon glyphicon-star"></span>
-            </div>
-            <div class="col-md-4 col-md-offset-1">
+            <div class="col-md-2 text-center">
                <span>
-                  <b>Description:</b> <?php echo $photo['Photo']['description']; ?>
+	               <?php echo $this->Html->image($photo['User']['profilepic'], array('alt' => '...', 
+                                                                                     'class' => 'smallpic', 
+                                                                                     'style' => 'width: 100px; height: 100px;')); ?>
                </span>
+            </div>
+            <div class="col-md-8">
+                  <b><?php echo $photo['User']['name']?></b>
+                  <br><br>
+                  <?php echo $photo['Photo']['description']; ?>
+                  <br><br>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
             </div>
          </div>
          <div class="row" style="margin-top: 20px;">

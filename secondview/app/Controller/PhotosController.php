@@ -94,18 +94,17 @@ class PhotosController extends AppController {
 		if (!$this->Photo->exists($id)) {
 			throw new NotFoundException(__('Invalid photo'));
 		}
-                $this->loadModel('Comment');
-                $this->loadModel('User');
-                $comments =  $this->Comment->find('all', array('conditions' => array('Comment.photo_id' => $id)));
-                $this->set('comments', $comments);
-                
-                $users = array();
-                for($x=0; $x < count($comments); $x++) {
-                   $users[$x] = $this->User->find('first', array('conditions' => array('User.id' => $comments[$x]['Comment']['user_id'])));
-                }
-                $this->set('users', $users);
+        $this->loadModel('Comment');
+        $this->loadModel('User');
+        $comments =  $this->Comment->find('all', array('conditions' => array('Comment.photo_id' => $id)));
+        $this->set('comments', $comments);     
+        $users = array();
+        for($x=0; $x < count($comments); $x++) {
+          $users[$x] = $this->User->find('first', array('conditions' => array('User.id' => $comments[$x]['Comment']['user_id'])));
+        }
+        $this->set('users', $users);
 
-		$options = array('conditions' => array('Photo.' . $this->Photo->primaryKey => $id), 'recursive' => 2);
+		$options = array('conditions' => array('Photo.' . $this->Photo->primaryKey => $id), 'recursive' => 1);
 		$this->set('photo', $this->Photo->find('first', $options));
               
 	}
