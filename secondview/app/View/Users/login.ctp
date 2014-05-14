@@ -46,5 +46,6 @@ future employers. We won't let your hard work and soul be buried in the sea of s
   </div> <!-- container -->
 </div> <!-- jumbotron -->	
 <div class="footer">
-  <span>Copyright @ 2014 SecondView</span>
+  <span>Copyright @ 2014 SecondView</span> <a href="/secondview/about"><br>Terms and conditions</a>
+  
 </div>
