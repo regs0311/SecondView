@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-4 col-md-offset-1">
                <span>
-                  <b>Tags:</b> <?php echo $photo['Photo']['description']; ?>
+                  <b>Description:</b> <?php echo $photo['Photo']['description']; ?>
                </span>
             </div>
          </div>
