@@ -1,10 +1,10 @@
 <div class="col-md-9">
-  <h3 class="text-center" style="color:white">Followers</h3>
-  <div class="row" style="overflow-x: scroll">
+  <h3 class="text-center" style="color:white; margin-bottom: 30px;">Followers</h3>
+  <div class="row" style="overflow-x: auto">
     <?php foreach ($userFollowing as $user): ?>
       <div  class="col-md-3 text-center">
         <div class="thumbnail">
-          <?php echo $this->Html->image($user['user']['profilepic'], array('alt' => 'profile picture')); ?>
+          <?php echo $this->Html->image($user['user']['profilepic'], array('alt' => 'profile picture', 'style' => 'height: 100px')); ?>
         </div> 
         <div style="margin-bottom: 15px">
           <a class="btn btn-default" href="/secondview/users/view/<?php echo $user['user']['id'] ?>" role="button">
@@ -19,12 +19,12 @@
     <?php } ?>
   </div>
   <hr>
-  <h3 class="text-center" style="color:white">Following</h3>
-  <div class="row" style="overflow-x: scroll">
+  <h3 class="text-center" style="color:white; margin-bottom: 30px;">Following</h3>
+  <div class="row" style="overflow-x: auto">
     <?php foreach ($userFollows as $user): ?>
       <div class="col-md-3 text-center">
         <div class="thumbnail">
-          <?php echo $this->Html->image($user['user']['profilepic'], array('alt' => 'profile picture')); ?>
+          <?php echo $this->Html->image($user['user']['profilepic'], array('alt' => 'profile picture', 'style' => 'height: 100px')); ?>
         </div> 
         <div style="margin-bottom: 15px">
           <a class="btn btn-default" href="/secondview/users/view/<?php echo $user['user']['id'] ?>" role="button">
