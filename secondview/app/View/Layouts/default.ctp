@@ -45,7 +45,7 @@
                   <li><a data-toggle="modal" data-target="#modalChangeDescription">Change Description</a></li>
                   <li><a data-toggle="modal" data-target="#modalChangePassword">Change Password</a></li>
                   <li class="divider"></li>
-                  <li><a href='/secondview/users/logout'><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                  <li><a href='/secondview/users/logout'><span class="glyphicon glyphicon-log-out"></span>   Logout</a></li>
                 </ul>
               </span>   
             <?php } ?>
