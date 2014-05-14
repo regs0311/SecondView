@@ -6,7 +6,7 @@
         <div class="thumbnail">
           <?php echo $this->Html->image($user['user']['profilepic'], array('alt' => 'profile picture')); ?>
         </div> 
-        <div>
+        <div style="margin-bottom: 15px">
           <a class="btn btn-default" href="/secondview/users/view/<?php echo $user['user']['id'] ?>" role="button">
 	        <span class="glyphicon glyphicon-user"></span>
             <span><?php echo h($user['user']['username']); ?>  </span>    
@@ -26,7 +26,7 @@
         <div class="thumbnail">
           <?php echo $this->Html->image($user['user']['profilepic'], array('alt' => 'profile picture')); ?>
         </div> 
-        <div>
+        <div style="margin-bottom: 15px">
           <a class="btn btn-default" href="/secondview/users/view/<?php echo $user['user']['id'] ?>" role="button">
 	        <span class="glyphicon glyphicon-user"></span>
             <span><?php echo h($user['user']['username']); ?>  </span>    
