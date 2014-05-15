@@ -1,0 +1,39 @@
+CREATE TABLE comments (
+  id SERIAL PRIMARY KEY NOT NULL ,
+  user_id     INT         NOT NULL,
+  photo_id    INT         NOT NULL,
+  comment     TEXT   NOT NULL,
+  created timestamp DEFAULT NULL
+);
+
+
+CREATE TABLE photos (
+  id SERIAL PRIMARY KEY NOT NULL ,
+  user_id INT NOT NULL,
+  description text DEFAULT '' NOT NULL,
+  rating INT DEFAULT 3,
+  src CHAR(255) NOT NULL,
+  created timestamp DEFAULT NULL
+);
+
+
+CREATE TABLE followers (
+  id SERIAL PRIMARY KEY NOT NULL ,
+  follower_id INT NOT NULL,
+  followed_id INT NOT NULL
+);
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY NOT NULL ,
+  username CHAR(255) NOT NULL,
+  name CHAR(255) NOT NULL,
+  email CHAR(255) NOT NULL,
+  password CHAR(255) NOT NULL,
+  country CHAR(255) NOT NULL,
+  gender INT NOT NULL,
+  profilepic CHAR(255) DEFAULT NULL,
+  dob date NOT NULL,
+  description TEXT DEFAULT 'Hey, this is my Second View profile :D' NOT NULL,
+  created timestamp DEFAULT NULL,
+  modified timestamp DEFAULT NULL
+);
