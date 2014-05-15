@@ -95,7 +95,7 @@ class UsersController extends AppController {
 				return $this->redirect(array('action' => 'login'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-			}	
+			}
 		}
 	}
 	
@@ -141,7 +141,7 @@ class UsersController extends AppController {
 				$this->redirect(array('controller' => 'users', 'action' => 'view', $this->Auth->user('id'), "?" => array('param' => 's')));
 			} else {
 				$this->redirect(array('controller' => 'users', 'action' => 'view', $this->Auth->user('id'), "?" => array('param' => 'e')));
-			}	
+			}
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
